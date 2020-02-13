@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "bitnoise-910ad",
+    "prod": "bitnoise-910ad"
+  }
+}
