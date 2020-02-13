@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <title>BitNoise</title>
+  </head>
+  <body>
+    <p>This is the sound of democracy</p>
+
+	<script src="https://blockexplorer.com/socket.io/socket.io.js"></script>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+
+	<div>
+      <button onclick='start()'>Start</button>
+      <button onclick='stop()'>Stop</button>
+    </div>
+    <p id="status">Not connected</p>
+    <svg width="400" height="400" id="bubbleCanvas" class="vizCanvas"></svg>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>
+
+
