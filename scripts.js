@@ -66,10 +66,9 @@ function init() {
             // make sounds
             console.log(totalTxValue);
 
-            var frequency = 100 / totalTxValue;
-            var ramp = totalTxValue * 100;
+            
             var now = context.currentTime;
-            kick.trigger(now, frequency, ramp, totalTxValue);
+            kick.trigger(now, totalTxValue);
 
         }
     };
@@ -134,20 +133,32 @@ Kick.prototype.setup = function() {
   this.gain.connect(this.context.destination)
 };
 
-Kick.prototype.trigger = function(time, frequency, ramp, totalTxValue) {
+Kick.prototype.trigger = function(time, totalTxValue) {
+  var frequency = 100 / totalTxValue;
+  var ramp = 500;
+
   this.setup();
 
-  this.osc.frequency.setValueAtTime(frequency, time);
+  this.osc.frequency.setValueAtTime(100, time);
   this.gain.gain.setValueAtTime(1, time);
 
   this.osc.frequency.exponentialRampToValueAtTime(ramp, time + 0.5);
-  this.gain.gain.exponentialRampToValueAtTime(ramp, time + 0.5);
+  this.gain.gain.exponentialRampToValueAtTime(ramp, time + 1.0);
 
   this.osc.start(time);
 
-  this.osc.stop(time + 0.5);
+  this.osc.stop(time + refineSound(totalTxValue));
 
 };
 
+function refineSound(value) {
+	value = value/1000;
+	const maxValue = 2.0;
+	if(value >= maxValue) {
+		return maxValue;
+	}
+	return value;
+}
 // -----------------
 window.addEventListener("load", init, false);
+
