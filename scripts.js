@@ -152,6 +152,7 @@ Kick.prototype.trigger = function(time, totalTxValue) {
 };
 
 function refineSound(value) {
+	
 	value = value/1000;
 	const maxValue = 2.0;
 	if(value >= maxValue) {
